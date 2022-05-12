@@ -1,0 +1,45 @@
+.accounts {
+    background-color:rgba(72, 131, 131, 0.623);
+    border: solid;
+    padding: 0.25em;
+}
+.account_list {
+    border: solid;
+    padding: 0.5em;
+}
+.account_container {
+    min-width: 175px;
+    max-width: 750px;
+    border: solid;
+    padding: 0.25em;
+    margin: auto;
+    margin-bottom: 0.55em;
+}
+.account_container:hover {
+    background-color: bisque;
+    min-width: 175px;
+    max-width: 750px;
+    border: solid;
+    padding: 0.25em;
+    margin: auto;
+    margin-bottom: 0.55em;
+}
+
+.account_header {
+    border: dotted;
+}
+
+.account_content {
+    display: inline-block;
+}
+
+button {
+    background-color: rgb(57, 122, 66);
+    padding: 10px 26px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    margin: 4px 2px;
+}
