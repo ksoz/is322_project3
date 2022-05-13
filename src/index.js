@@ -11,6 +11,7 @@ import Home from './Home.js';
 import Accounts from './Accounts';
 import Account from './Account';
 import Transactions from './Transactions';
+import Transaction from './Transaction';
 import Nav from './Nav';
 import { render } from '@testing-library/react';
 
@@ -56,23 +57,40 @@ const App = () => {
     { "_id": 22, "accountId": 10, "type": "deposit", "amount": 0.00, "name": "Account Opened" },
     { "_id": 23, "accountId": 10, "type": "withdraw", "amount": 134.34, "name": "Raiding Repayment" }
   ])
+  const [show, setShow] = useState(false);
 
   const deleteAccount = (_id) => {
     setAccounts(accounts.filter((account)=>account._id !== _id))
   }
+  const showTransactions = (_id) => {
+    setAccounts(accounts.filter((account)=>account._id == transactions.accountId))
+  }
+  const TransactionsModal = () => {
+    return (
+      <div className="modal" show={show}>
+        <div className="modal-content">
+          {transactions.map((trans) => (
+            <div>
+              <Transaction key={trans._id} accountId={trans.accountId} note={trans.name} amount={trans.amount}/>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
   return (
     <Router>
     <div class="App">
+      <h2>***NOTE: This does not use the API. I attempted to connect to your provided project2DB but was having difficulties. </h2>
         <Nav/>
         <Routes>
           <Route path="/" exact element={<Home/>}/>
-          <Route path="/accounts" exact element={<Accounts accounts={accounts} onDelete={deleteAccount}/>}/>
-          <Route path="/account" exact element={<Account/>}>
-            <Route path=":_id" element={<Transactions/>}/>
-          </Route>
+          <Route path="/accounts" exact element={<Accounts accounts={accounts} setShow={show} showTrans={showTransactions} onDelete={deleteAccount}/>}/>
+          <Route path="/account" exact element={<Account/>}/>
           <Route path="/transactions" exact element={<Transactions transactions={transactions}/>}/>
 
         </Routes>
+        
     </div>
     </Router>
   );

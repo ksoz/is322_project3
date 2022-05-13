@@ -3,11 +3,12 @@ import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import "./accounts.css";
 import Account from './Account.js';
+import Transactions from './Transactions';
 import getAllAccounts from './GetAccounts';
 
 const accountList = []
 
-const Accounts = ({accounts, onDelete}) => {
+const Accounts = ({accounts, transactions, onDelete, showTrans, setShow}) => {
     const navStyle = {
         color: 'black'
     };
@@ -22,9 +23,8 @@ const Accounts = ({accounts, onDelete}) => {
                     {accounts.map((account) => (
                     <div>
                     <button onClick={() => onDelete(account._id)}>Delete Account</button>
-                    <Link to="/account">
-                        <Account key={account._id} name={account.name} balance={account.balance}/>
-                    </Link>
+                    <button onClick={() => setShow(true), () => showTrans(transactions._id)}>View Transactions</button>
+                    <Account key={account._id} name={account.name} balance={account.balance}/>
                     </div>
                     ))}
                 </div>
@@ -36,6 +36,5 @@ const Accounts = ({accounts, onDelete}) => {
     }
     return <div> Loading....</div>;
 }
-
 
 export default Accounts;

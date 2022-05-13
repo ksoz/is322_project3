@@ -12,7 +12,6 @@ const Account = (props) => {
             <div className="account_content">
                 <h4>${props.balance}</h4>
             </div>
-
         </div>
     )
 }
